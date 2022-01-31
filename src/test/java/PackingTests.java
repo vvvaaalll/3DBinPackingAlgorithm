@@ -16,6 +16,7 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
         }
         assertEquals(6, packing.GetLevels().get(0).GetPackedBoxes().size());
         assertEquals(4, packing.GetLevels().get(1).GetPackedBoxes().size());
@@ -32,6 +33,7 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
         }
 
         assertEquals(4, packing.GetLevels().get(0).GetPackedBoxes().size());
@@ -50,6 +52,7 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
         }
 
         assertEquals(9, packing.GetLevels().get(0).GetPackedBoxes().size());
@@ -76,6 +79,7 @@ public class PackingTests {
 
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
         }
 
         assertEquals(20, packing.CountOfBoxesFit());
@@ -90,8 +94,9 @@ public class PackingTests {
         Container container = new Container(0,0,0);
 
         Packing packing = new Packing(boxes, container);
-        while(!(!packing.GetBoxes().isEmpty() || !(packing.HeightOfPackedStack() >= container.GetDimensions().get("height")))) {
+        while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
         }
 
         assertEquals(0, packing.CountOfBoxesFit());
@@ -104,14 +109,15 @@ public class PackingTests {
         ArrayList<Box> boxes = new ArrayList<Box>();
         boxes.addAll(Box.GenerateBoxes("1", 10, 5, 3, 4));
         boxes.addAll(Box.GenerateBoxes("2", 5, 2, 4, 3));
-        Container container = new Container(20,20,20);
+        Container container = new Container(10,8,4);
 
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty() ) {
             packing.PackLevel();
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
         }
 
-        assertEquals(15, packing.CountOfBoxesFit());
+        assertEquals(7, packing.CountOfBoxesFit());
 
 
     }
