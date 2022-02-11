@@ -33,13 +33,13 @@ Uz ove atribute, klasa ima 3 metode: metodu za izmjenu dimenzija prostorije i me
 Klasa Packing
 ---
 <br />
-Klasa Packing ima tri atributa: boxes, container i levels te 8 metoda: Get metode, TryToFit, FitBox, CountOfBoxesFit, HeightOfPackedStack, PackLevel i Fill space.<br />
-Metoda TryToFit uspoređuje dimenzije prostora i kutije te vraća boolean vrijednost stane li kutija u prostor ili ne <br />
-Metoda FitBox kao parametre prima dostupan prostor i kutiju koju se želi spremiti u dani prostor. Metoda poziva metodu TryToFit, ukoliko kutija ne stane u dani prostor, nad njom se unutar for petlje poziva metoda RotateBox. ukoliko nakon rotiranja kutije kutija stane u prostor, prekida se daljnje rotiranje kutije.<br />
-Metoda CountOfBoxesFit vraća broj kutija spremljenih u sve levele. <br />
-Metoda HeightOfPackedStack vraća visinu spremljenih razina na koje su spremljene kutije. Koristi se za kontrolu visine naslaganih kutija kako se ne bi prelazila visina prostorije.
+Klasa Packing ima tri atributa: boxes, container i levels te 8 metoda: Get metode, TryToFit, FitBox, CountOfBoxesFit, HeightOfPackedStack, PackLevel i Fill space.<br /><br />
+Metoda TryToFit uspoređuje dimenzije prostora i kutije te vraća boolean vrijednost stane li kutija u prostor ili ne <br /><br />
+Metoda FitBox kao parametre prima dostupan prostor i kutiju koju se želi spremiti u dani prostor. Metoda poziva metodu TryToFit, ukoliko kutija ne stane u dani prostor, nad njom se unutar for petlje poziva metoda RotateBox. ukoliko nakon rotiranja kutije kutija stane u prostor, prekida se daljnje rotiranje kutije.<br /><br />
+Metoda CountOfBoxesFit vraća broj kutija spremljenih u sve levele. <br /><br />
+Metoda HeightOfPackedStack vraća visinu spremljenih razina na koje su spremljene kutije. Koristi se za kontrolu visine naslaganih kutija kako se ne bi prelazila visina prostorije.<br /><br />
 Metoda PackLevel popunjava razinu na način da uzima kutiju s najvećom površinom donje plohe te tu kutiju stavlja u razinu prvu. visina razine postaje visina kutije koja je prva stavljena na danu razinu.
-Ukoliko kutija s najvećom površinom ne stane prva, uzima se prva ljedeća kutija koja stane. Nakon smještene prve kutije, preostali volumen se dijeli na 2 volumena te se za svaki poziva metoda FillSpace koja ih popunjava.<br />
+Ukoliko kutija s najvećom površinom ne stane prva, uzima se prva ljedeća kutija koja stane. Nakon smještene prve kutije, preostali volumen se dijeli na 2 volumena te se za svaki poziva metoda FillSpace koja ih popunjava.<br /><br />
 Metoda FillSpace kao parametre priam dostupan prostor i razinu na koju se kutije spremaju. Metoda u dostupan prostor sprema kutije po principu first fit, nakon čega se rekurzivno poziva kako bi se popunila preostala dva volumena, sve dok se razina ne popuni.
 
 
