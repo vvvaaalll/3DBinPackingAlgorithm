@@ -1,12 +1,15 @@
 package Model;
 
+import lombok.Data;
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
-
+@Data
 public class Container {
 
-    private Map<String, Integer> dimensions = new HashMap<String, Integer>();
-    private Integer volume;
+    private @Getter Map<String, Integer> dimensions = new HashMap<String, Integer>();
+    private @Getter Integer volume;
 
     public Container() {
     }
@@ -19,19 +22,5 @@ public class Container {
 
     }
 
-    public Map<String, Integer> GetDimensions() {
-        return dimensions;
-    }
 
-    public Integer GetVolume() {
-        return volume;
-    }
-
-    public void SetDimension(Map<String, Integer> dimension) {
-        this.dimensions = dimension;
-    }
-
-    public void SetVolume(Integer volume) {
-        this.volume = volume;
-    }
 }

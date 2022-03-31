@@ -1,10 +1,12 @@
 package Model;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
+@Data
 public class Box {
 
     private String type;
@@ -28,17 +30,6 @@ public class Box {
 
     }
 
-    public String GetType() {
-        return type;
-    }
-
-    public Map<String, Integer> GetDimension() {
-        return dimension;
-    }
-
-    public Integer GetVolume() {
-        return this.volume;
-    }
 
     public static ArrayList<Box> GenerateBoxes(String boxType, Integer nOfBoxes, Integer l, Integer w, Integer h){
         ArrayList<Box> boxes = new ArrayList<Box>();

@@ -1,7 +1,6 @@
 import Model.*;
 import org.jetbrains.annotations.NotNull;
-//import Model.Container;
-//import Model.Level;
+
 
 import java.util.ArrayList;
 
@@ -32,11 +31,11 @@ public class Packing {
     public double GetPercentageOfUnusedContainer(){
         double percent=1;
         double sumOfBoxVolumes = 0;
-        double containerVolume = container.GetVolume();
+        double containerVolume = container.getVolume();
 
         for (Level level : levels) {
-            for (Box box : level.GetPackedBoxes()) {
-                sumOfBoxVolumes += box.GetVolume();
+            for (Box box : level.getPackedBoxes()) {
+                sumOfBoxVolumes += box.getVolume();
             }
 
         }
@@ -45,9 +44,9 @@ public class Packing {
     }
 
     public boolean TryToFit(@NotNull Container freeSpace, @NotNull Box box) {
-        if (freeSpace.GetDimensions().get("length") >= box.GetDimension().get("length")
-                && freeSpace.GetDimensions().get("width") >= box.GetDimension().get("width")
-                && freeSpace.GetDimensions().get("height") >= box.GetDimension().get("height")
+        if (freeSpace.getDimensions().get("length") >= box.getDimension().get("length")
+                && freeSpace.getDimensions().get("width") >= box.getDimension().get("width")
+                && freeSpace.getDimensions().get("height") >= box.getDimension().get("height")
         ) return true;
 
         return false;
@@ -69,7 +68,7 @@ public class Packing {
             int count = 0;
 
             for (Level level : levels) {
-                for (Box box : level.GetPackedBoxes()) {
+                for (Box box : level.getPackedBoxes()) {
                     count++;
                 }
 
@@ -84,11 +83,11 @@ public class Packing {
             int maxBoxHeight = 0;
             if(levels!=null)
             for (Level level : levels) {
-                if (level != null && !level.GetPackedBoxes().isEmpty()) {
-                    maxBoxHeight = level.GetPackedBoxes().get(0).GetDimension().get("height");
-                    for (Box box : level.GetPackedBoxes()) {
-                        if (box.GetDimension().get("height") >= maxBoxHeight)
-                            maxBoxHeight = box.GetDimension().get("height");
+                if (level != null && !level.getPackedBoxes().isEmpty()) {
+                    maxBoxHeight = level.getPackedBoxes().get(0).getDimension().get("height");
+                    for (Box box : level.getPackedBoxes()) {
+                        if (box.getDimension().get("height") >= maxBoxHeight)
+                            maxBoxHeight = box.getDimension().get("height");
                     }
 
                     height += maxBoxHeight;
@@ -104,16 +103,16 @@ public class Packing {
         Level level = new Level();
         levels.add(level);
 
-        if (HeightOfPackedStack() >= container.GetDimensions().get("height")) return;
+        if (HeightOfPackedStack() >= container.getDimensions().get("height")) return;
 
-        Container packLevel = new Container(container.GetDimensions().get("length"),
-                container.GetDimensions().get("width"),
-                container.GetDimensions().get("height") - HeightOfPackedStack());
+        Container packLevel = new Container(container.getDimensions().get("length"),
+                container.getDimensions().get("width"),
+                container.getDimensions().get("height") - HeightOfPackedStack());
 
 
         for (Box box : boxes) {
 
-            int surfaceArea = box.GetDimension().get("length") * box.GetDimension().get("width");
+            int surfaceArea = box.getDimension().get("length") * box.getDimension().get("width");
 
             if (surfaceArea > surfaceAreaOfBiggestBox) {
                 surfaceAreaOfBiggestBox = surfaceArea;
@@ -133,36 +132,36 @@ public class Packing {
 
         if (biggestBox == null) {
             FillSpace(
-                    new Container(packLevel.GetDimensions().get("length"),
-                            packLevel.GetDimensions().get("width"),
-                            packLevel.GetDimensions().get("height")),
+                    new Container(packLevel.getDimensions().get("length"),
+                            packLevel.getDimensions().get("width"),
+                            packLevel.getDimensions().get("height")),
                     level
             );
         } else {
-            int packLevelArea = packLevel.GetDimensions().get("length") * packLevel.GetDimensions().get("width");
-            int boxArea = biggestBox.GetDimension().get("length") * biggestBox.GetDimension().get("width");
+            int packLevelArea = packLevel.getDimensions().get("length") * packLevel.getDimensions().get("width");
+            int boxArea = biggestBox.getDimension().get("length") * biggestBox.getDimension().get("width");
 
             if (packLevelArea - boxArea > 0) {
 
-                if (packLevel.GetDimensions().get("length")
-                        - biggestBox.GetDimension().get("length") > 0) {
+                if (packLevel.getDimensions().get("length")
+                        - biggestBox.getDimension().get("length") > 0) {
 
                     FillSpace(
-                            new Container(packLevel.GetDimensions().get("length")
-                                    - biggestBox.GetDimension().get("length"),
-                                    biggestBox.GetDimension().get("width"),
-                                    biggestBox.GetDimension().get("height")),
+                            new Container(packLevel.getDimensions().get("length")
+                                    - biggestBox.getDimension().get("length"),
+                                    biggestBox.getDimension().get("width"),
+                                    biggestBox.getDimension().get("height")),
                             level
                     );
                 }
-                if (packLevel.GetDimensions().get("width")
-                        - biggestBox.GetDimension().get("width") > 0) {
+                if (packLevel.getDimensions().get("width")
+                        - biggestBox.getDimension().get("width") > 0) {
 
                     FillSpace(
-                            new Container(packLevel.GetDimensions().get("length"),
-                                    packLevel.GetDimensions().get("width")
-                                            - biggestBox.GetDimension().get("width"),
-                                    biggestBox.GetDimension().get("height")),
+                            new Container(packLevel.getDimensions().get("length"),
+                                    packLevel.getDimensions().get("width")
+                                            - biggestBox.getDimension().get("width"),
+                                    biggestBox.getDimension().get("height")),
                             level
                     );
                 }
@@ -178,17 +177,17 @@ public class Packing {
 
     public void FillSpace(Container space, Level level){
 
-        int spaceVolume = space.GetVolume();
+        int spaceVolume = space.getVolume();
         Box selectedBox = null;
         int selectedBoxVolume = 0;
 
         for(Box box : boxes){
-            if (box.GetVolume() > spaceVolume) continue;
+            if (box.getVolume() > spaceVolume) continue;
             else{
                 if(FitBox(space, box)){
-                    if(box.GetVolume() > selectedBoxVolume){
+                    if(box.getVolume() > selectedBoxVolume){
                         selectedBox = box;
-                        selectedBoxVolume = box.GetVolume();
+                        selectedBoxVolume = box.getVolume();
                     }
                 }
             }
@@ -197,25 +196,25 @@ public class Packing {
             level.Add(selectedBox);
             boxes.remove(selectedBox);
 
-            if(space.GetDimensions().get("length")
-                    -selectedBox.GetDimension().get("length") > 0){
+            if(space.getDimensions().get("length")
+                    -selectedBox.getDimension().get("length") > 0){
 
                 FillSpace(
-                        new Container(space.GetDimensions().get("length")
-                                -selectedBox.GetDimension().get("length"),
-                                selectedBox.GetDimension().get("width"),
-                                space.GetDimensions().get("height")),
+                        new Container(space.getDimensions().get("length")
+                                -selectedBox.getDimension().get("length"),
+                                selectedBox.getDimension().get("width"),
+                                space.getDimensions().get("height")),
                         level
                 );
             }
-            if(space.GetDimensions().get("width")
-                    -selectedBox.GetDimension().get("width") > 0){
+            if(space.getDimensions().get("width")
+                    -selectedBox.getDimension().get("width") > 0){
 
                 FillSpace(
-                        new Container(space.GetDimensions().get("length"),
-                             space.GetDimensions().get("width")
-                                -selectedBox.GetDimension().get("width"),
-                                space.GetDimensions().get("height")),
+                        new Container(space.getDimensions().get("length"),
+                             space.getDimensions().get("width")
+                                -selectedBox.getDimension().get("width"),
+                                space.getDimensions().get("height")),
                         level
                 );
             }

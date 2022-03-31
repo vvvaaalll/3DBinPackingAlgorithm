@@ -1,10 +1,12 @@
 package Model;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 
 public class Level {
 
-    private ArrayList<Box> packedBoxes;
+    private @Getter ArrayList<Box> packedBoxes;
 
     public Level(){
 
@@ -12,9 +14,7 @@ public class Level {
 
     }
 
-    public ArrayList<Box> GetPackedBoxes() {
-        return packedBoxes;
-    }
+
 
     public void Add(Box box){
 

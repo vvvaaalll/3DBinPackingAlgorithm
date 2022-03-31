@@ -16,10 +16,10 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
-            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).getPackedBoxes().isEmpty()) break;
         }
-        assertEquals(6, packing.GetLevels().get(0).GetPackedBoxes().size());
-        assertEquals(4, packing.GetLevels().get(1).GetPackedBoxes().size());
+        assertEquals(6, packing.GetLevels().get(0).getPackedBoxes().size());
+        assertEquals(4, packing.GetLevels().get(1).getPackedBoxes().size());
                 assertEquals(10, packing.CountOfBoxesFit());
 
 
@@ -33,12 +33,12 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
-            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).getPackedBoxes().isEmpty()) break;
         }
 
-        assertEquals(4, packing.GetLevels().get(0).GetPackedBoxes().size());
-        assertEquals(4, packing.GetLevels().get(1).GetPackedBoxes().size());
-        assertEquals(2, packing.GetLevels().get(2).GetPackedBoxes().size());
+        assertEquals(4, packing.GetLevels().get(0).getPackedBoxes().size());
+        assertEquals(4, packing.GetLevels().get(1).getPackedBoxes().size());
+        assertEquals(2, packing.GetLevels().get(2).getPackedBoxes().size());
         assertEquals(10, packing.CountOfBoxesFit());
 
 
@@ -52,11 +52,11 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
-            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).getPackedBoxes().isEmpty()) break;
         }
 
-        assertEquals(9, packing.GetLevels().get(0).GetPackedBoxes().size());
-        assertEquals(1, packing.GetLevels().get(1).GetPackedBoxes().size());
+        assertEquals(9, packing.GetLevels().get(0).getPackedBoxes().size());
+        assertEquals(1, packing.GetLevels().get(1).getPackedBoxes().size());
         assertEquals(10, packing.CountOfBoxesFit());
 
 
@@ -79,7 +79,7 @@ public class PackingTests {
 
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
-            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).getPackedBoxes().isEmpty()) break;
         }
 
         assertEquals(20, packing.CountOfBoxesFit());
@@ -96,7 +96,7 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty()) {
             packing.PackLevel();
-            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).getPackedBoxes().isEmpty()) break;
         }
 
         assertEquals(0, packing.CountOfBoxesFit());
@@ -114,7 +114,7 @@ public class PackingTests {
         Packing packing = new Packing(boxes, container);
         while(!packing.GetBoxes().isEmpty() ) {
             packing.PackLevel();
-            if(packing.GetLevels().get(packing.GetLevels().size()-1).GetPackedBoxes().isEmpty()) break;
+            if(packing.GetLevels().get(packing.GetLevels().size()-1).getPackedBoxes().isEmpty()) break;
         }
 
         assertEquals(7, packing.CountOfBoxesFit());
