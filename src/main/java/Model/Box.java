@@ -1,6 +1,8 @@
 package Model;
 
+import ch.qos.logback.classic.Logger;
 import lombok.Data;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +14,8 @@ public class Box {
     private String type;
     private Map<String, Integer> dimension = new HashMap<String, Integer>();
     private Integer volume;
+
+    Logger logger = (Logger) LoggerFactory.getLogger(Box.class);
 
     public Box(String boxType, Integer l, Integer w, Integer h) {
         type = boxType;
@@ -49,13 +53,15 @@ public class Box {
 
     public Box RotateBox() {
 
+        logger.info("box before rotating {}", getDimension());
+
         Set<String> keySet = this.dimension.keySet();
         String[] sides = keySet.toArray(new String[3]);
         dimension.put(sides[1],
                 dimension.put(sides[2], dimension.get(sides[1])));
         dimension.put(sides[0],
                 dimension.put(sides[2], dimension.get(sides[0])));
-
+        logger.info("box after rotating {}", getDimension());
         return this;
     }
 

@@ -1,14 +1,19 @@
 import Model.*;
+import ch.qos.logback.classic.Logger;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.LoggerFactory;
 
 
 import java.util.ArrayList;
 
 public class Packing {
 
-    private ArrayList<Box> boxes = new ArrayList<Box>();
+    private @Getter ArrayList<Box> boxes = new ArrayList<Box>();
     private Container container = new Container();
-    private ArrayList<Level> levels = new ArrayList<Level>();
+    private @Getter ArrayList<Level> levels = new ArrayList<Level>();
+
+    Logger logger = (Logger) LoggerFactory.getLogger(Packing.class);
 
     public Packing(ArrayList<Box> boxes, Container container) {
         this.boxes = boxes;
@@ -20,13 +25,7 @@ public class Packing {
         this.container = container;
     }
 
-    public ArrayList<Box> GetBoxes() {
-        return boxes;
-    }
 
-    public ArrayList<Level> GetLevels() {
-        return levels;
-    }
 
     public double GetPercentageOfUnusedContainer(){
         double percent=1;
@@ -47,20 +46,26 @@ public class Packing {
         if (freeSpace.getDimensions().get("length") >= box.getDimension().get("length")
                 && freeSpace.getDimensions().get("width") >= box.getDimension().get("width")
                 && freeSpace.getDimensions().get("height") >= box.getDimension().get("height")
-        ) return true;
+        ){
+            return true;}
 
         return false;
     }
 
     public boolean FitBox(Container tempSpace, Box box) {
-        if (TryToFit(tempSpace, box)) return true;
+        if (TryToFit(tempSpace, box)){
+            logger.info("Box {} fitted", box);
+            return true;
+        }
         else {
             for (int i = 0; i < 3; i++) {
                 if (TryToFit(tempSpace, box.RotateBox())) {
+                    logger.info("Box {} fitted", box);
                     return true;
                 }
             }
         }
+        logger.info("Box {} does not fit", box);
         return false;
     }
 
