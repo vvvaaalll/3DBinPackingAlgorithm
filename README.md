@@ -1,4 +1,4 @@
-# Base58PackingProblem
+# 3D bin packing problem
 Ideja rješenja
 ---
 Rješenje slaganja kutija zamišljeno je tako da se kutije u prostoriju slažu po slojevima. Prva kutija u sloju uvijek je ona s najvećom površinom donje plohe, bez rotiranja.
